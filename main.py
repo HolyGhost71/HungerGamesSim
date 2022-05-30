@@ -1,7 +1,8 @@
 import random
 from Tribute import Tribute
 
-def createTributeNameArray():
+def createTributeArray():
+    objArray = []
     while (True):
         
         inputMode = input("(T)ext file or (M)anual: ")
@@ -23,11 +24,14 @@ def createTributeNameArray():
             break
         
         else: print("Invalid input")
+        
+    for i in range (0,len(tributeNameArray)):
+        objArray.append(Tribute(tributeNameArray[i]))
             
-    return tributeNameArray
+    return objArray
 
 def main():
-    tributes = createTributeNameArray()
+    tributes = createTributeArray()
      
     # Game
     while (len(tributes) > 1):
@@ -37,11 +41,11 @@ def main():
         trib2 = random.choice(tributes)
         tributes.remove(trib2)
         
-        print(f"{trib1} kills {trib2}")
+        print(f"{trib1.name} kills {trib2.name}")
         
         tributes.append(trib1)
         
-    winner = tributes[0]
+    winner = tributes[0].name
     print(f"Winner of the Hunger games is: {winner}")
     
 if __name__ == "__main__":
