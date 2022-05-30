@@ -1,7 +1,7 @@
 import random
+from Tribute import Tribute
 
-def createTributeArray():
-    
+def createTributeNameArray():
     while (True):
         
         inputMode = input("(T)ext file or (M)anual: ")
@@ -9,26 +9,26 @@ def createTributeArray():
         if (inputMode.lower().strip() == "t"):
             file = open("players.txt","r")
             text = file.read()
-            tributeArray = text.split(", ")
+            tributeNameArray = text.split(", ")
             break
 
         if (inputMode.lower().strip() == "m"):
-            tributeArray = []
+            tributeNameArray = []
             while (True):
                 newTribute = ""
                 newTribute = input("Tribute name, type EXIT when you are done: ")
                 if (newTribute.lower().strip() == "exit"):
                     break
-                tributeArray.append(newTribute.lower().strip().capitalize())
+                tributeNameArray.append(newTribute.lower().strip().capitalize())
             break
         
         else: print("Invalid input")
             
-    return tributeArray
+    return tributeNameArray
 
 def main():
-    tributes = createTributeArray()
-
+    tributes = createTributeNameArray()
+     
     # Game
     while (len(tributes) > 1):
         trib1 = random.choice(tributes)
