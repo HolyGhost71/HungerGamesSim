@@ -1,5 +1,8 @@
 import random
+import time
+import numpy as np
 from Tribute import Tribute
+from events import *
 
 def createTributeArray():
     objArray = []
@@ -31,22 +34,26 @@ def createTributeArray():
     return objArray
 
 def main():
-    tributes = createTributeArray()
+    #Preserves the original array of Tribute objects - shows dead/alive, kills etc.
+    startingTributes = createTributeArray()
+    #Only alive players are acted on
+    tributes = startingTributes.copy()
      
     # Game
     while (len(tributes) > 1):
-        trib1 = random.choice(tributes)
-        tributes.remove(trib1)
-        
-        trib2 = random.choice(tributes)
-        tributes.remove(trib2)
-        
-        print(f"{trib1.name} kills {trib2.name}")
-        
-        tributes.append(trib1)
+        # randomInt = random.randint(1,10)
+        # if randomInt == 1:
+            tributes = kill(tributes)
+        # if randomInt == 2:
+        #     aliveTributes = suicide(tributes)
         
     winner = tributes[0].name
+    
     print(f"Winner of the Hunger games is: {winner}")
+    print("\nNumber of kills per player: \n")
+    
+    for i in range (0,len(startingTributes)):
+        print(f"{startingTributes[i].name}: {startingTributes[i].kills}")
     
 if __name__ == "__main__":
     main()
