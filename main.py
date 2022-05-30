@@ -1,22 +1,30 @@
 import random
 
-def createTributeArray() -> str:
-    inputMode = input("(T)ext file or (M)anual: ")
+def createTributeArray():
+    
+    while (True):
         
-    if (inputMode.lower().strip() == "t"):
-        file = open("players.txt","r")
-        text = file.read()
-        tributes = text.split(", ")
+        inputMode = input("(T)ext file or (M)anual: ")
+        
+        if (inputMode.lower().strip() == "t"):
+            file = open("players.txt","r")
+            text = file.read()
+            tributeArray = text.split(", ")
+            break
 
-    if (inputMode.lower().strip() == "m"):
-        while (True):
-            newTribute = ""
-            newTribute = input("Tribute name, type EXIT when you are done: ")
-            if (newTribute.lower().strip() == "exit"):
-                break
-            tributes.append(newTribute.lower().strip().capitalize())
+        if (inputMode.lower().strip() == "m"):
+            tributeArray = []
+            while (True):
+                newTribute = ""
+                newTribute = input("Tribute name, type EXIT when you are done: ")
+                if (newTribute.lower().strip() == "exit"):
+                    break
+                tributeArray.append(newTribute.lower().strip().capitalize())
+            break
+        
+        else: print("Invalid input")
             
-    return tributes
+    return tributeArray
 
 def main():
     tributes = createTributeArray()
