@@ -1,7 +1,8 @@
 import random
 from Tribute import Tribute
 
-def createTributeNameArray():
+def createTributeArray():
+    objArray = []
     while (True):
         
         inputMode = input("(T)ext file or (M)anual: ")
@@ -23,21 +24,14 @@ def createTributeNameArray():
             break
         
         else: print("Invalid input")
+        
+    for i in range (0,len(tributeNameArray)):
+        objArray.append(Tribute(tributeNameArray[i]))
             
-    return tributeNameArray
-
-def createTributeObjectArray(names):
-    objArray = []
-    print(names)
-    
-    for i in range (0,len(names)):
-        objArray.append(Tribute(names[i]))
-    
     return objArray
 
 def main():
-    tributesNames = createTributeNameArray()
-    tributes = createTributeObjectArray(tributesNames)
+    tributes = createTributeArray()
      
     # Game
     while (len(tributes) > 1):
