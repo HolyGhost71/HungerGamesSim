@@ -26,8 +26,18 @@ def createTributeNameArray():
             
     return tributeNameArray
 
+def createTributeObjectArray(names):
+    objArray = []
+    print(names)
+    
+    for i in range (0,len(names)):
+        objArray.append(Tribute(names[i]))
+    
+    return objArray
+
 def main():
-    tributes = createTributeNameArray()
+    tributesNames = createTributeNameArray()
+    tributes = createTributeObjectArray(tributesNames)
      
     # Game
     while (len(tributes) > 1):
@@ -37,11 +47,11 @@ def main():
         trib2 = random.choice(tributes)
         tributes.remove(trib2)
         
-        print(f"{trib1} kills {trib2}")
+        print(f"{trib1.name} kills {trib2.name}")
         
         tributes.append(trib1)
         
-    winner = tributes[0]
+    winner = tributes[0].name
     print(f"Winner of the Hunger games is: {winner}")
     
 if __name__ == "__main__":
