@@ -40,13 +40,24 @@ def main():
     tributes = startingTributes.copy()
      
     # Game
-    while (len(tributes) > 1):
-        # randomInt = random.randint(1,10)
-        # if randomInt == 1:
-            tributes = kill(tributes)
-        # if randomInt == 2:
-        #     aliveTributes = suicide(tributes)
-        
+    while (True):
+        print("\n=====Next Day=====\n")
+        while (len(tributes) > 1):
+            randomInt = random.randint(1,10)
+            if 1 <= randomInt <= 4:
+                randomEvent(tributes)
+            elif 5 <= randomInt <= 6:
+                tributes = kill(tributes)
+            elif randomInt == 7:
+                tributes = suicide(tributes)
+    
+        for t in startingTributes:
+            if t.alive == True:
+                tributes.append(t)
+                
+        if len(tributes) == 1:
+            break
+                
     winner = tributes[0].name
     
     print(f"Winner of the Hunger games is: {winner}")
