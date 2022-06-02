@@ -2,6 +2,9 @@ import random
 
 def kill(tributes):
     
+    if len(tributes) < 2:
+        return tributes
+    
     trib1 = random.choice(tributes)
     tributes.remove(trib1)
     

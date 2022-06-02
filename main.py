@@ -38,11 +38,16 @@ def main():
     startingTributes = createTributeArray()
     #Only alive players are acted on
     tributes = startingTributes.copy()
+    
+    cycle: int = 2
      
     # Game
     while (True):
-        print("\n=====Next Day=====\n")
-        while (len(tributes) > 1):
+        
+        if (cycle % 2 == 0): print("\n===Day:",int(cycle/2),"===\n")
+        else: print ("\n===Night", int((cycle-1)/2),"===\n")
+        
+        while (len(tributes) > 0):
             randomInt = random.randint(1,10)
             if 1 <= randomInt <= 4:
                 randomEvent(tributes)
@@ -57,6 +62,8 @@ def main():
                 
         if len(tributes) == 1:
             break
+        
+        cycle += 1
                 
     winner = tributes[0].name
     
