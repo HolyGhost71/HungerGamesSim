@@ -3,9 +3,7 @@ class Tribute:
         self.name = name
         self.alive = True
         self.kills = 0
-        self.weapons = []
+        self.weapon = None
         
     def playerKill(self):
         self.kills += 1
-        
-    

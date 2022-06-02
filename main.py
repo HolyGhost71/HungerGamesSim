@@ -44,17 +44,22 @@ def main():
     # Game
     while (True):
         
-        if (cycle % 2 == 0): print("\n===Day:",int(cycle/2),"===\n")
-        else: print ("\n===Night", int((cycle-1)/2),"===\n")
+        if (cycle % 2 == 0): print("\n=== Day:",int(cycle/2),"===\n")
+        else: print ("\n=== Night:", int((cycle-1)/2),"===\n")
         
         while (len(tributes) > 0):
             randomInt = random.randint(1,10)
-            if 1 <= randomInt <= 4:
+            if 1 <= randomInt <= 2:
                 randomEvent(tributes)
+            elif 3 <= randomInt <= 4:
+                tributes = weaponKill(tributes)
             elif 5 <= randomInt <= 6:
-                tributes = kill(tributes)
+                tributes = meleeKill(tributes)
             elif randomInt == 7:
                 tributes = suicide(tributes)
+            elif randomInt == 8:
+                weaponEquip(tributes)
+            
     
         for t in startingTributes:
             if t.alive == True:
