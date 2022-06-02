@@ -28,8 +28,10 @@ def createTributeArray():
         
         else: print("Invalid input")
         
-    for i in range (0,len(tributeNameArray)):
-        objArray.append(Tribute(tributeNameArray[i]))
+    i = 0
+    while i < len(tributeNameArray):
+        objArray.append(Tribute(tributeNameArray[i], tributeNameArray[i+1]))
+        i += 2
             
     return objArray
 
@@ -38,6 +40,9 @@ def main():
     startingTributes = createTributeArray()
     #Only alive players are acted on
     tributes = startingTributes.copy()
+    
+    for i in range (0,len(startingTributes)):
+        print(f"{startingTributes[i].name}: {startingTributes[i].they}")
     
     cycle: int = 2
      
@@ -55,7 +60,7 @@ def main():
                 tributes = weaponKill(tributes)
             elif 5 <= randomInt <= 6:
                 tributes = meleeKill(tributes)
-            elif randomInt == 7:
+            elif randomInt == 7 and len(tributes) > 5:
                 tributes = suicide(tributes)
             elif randomInt == 8:
                 weaponEquip(tributes)
@@ -72,7 +77,7 @@ def main():
                 
     winner = tributes[0].name
     
-    print(f"Winner of the Hunger games is: {winner}")
+    print(f"\nWinner of the Hunger games is: {winner}")
     print("\nNumber of kills per player: \n")
     
     for i in range (0,len(startingTributes)):
