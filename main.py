@@ -28,8 +28,10 @@ def createTributeArray():
         
         else: print("Invalid input")
         
-    for i in range (0,len(tributeNameArray)):
-        objArray.append(Tribute(tributeNameArray[i]))
+    i = 0
+    while i < len(tributeNameArray):
+        objArray.append(Tribute(tributeNameArray[i], tributeNameArray[i+1]))
+        i += 2
             
     return objArray
 
@@ -38,18 +40,28 @@ def main():
     startingTributes = createTributeArray()
     #Only alive players are acted on
     tributes = startingTributes.copy()
+    
+    cycle: int = 2
      
     # Game
     while (True):
-        print("\n=====Next Day=====\n")
-        while (len(tributes) > 1):
+        
+        if (cycle % 2 == 0): print("\n=== Day:",int(cycle/2),"===\n")
+        else: print ("\n=== Night:", int((cycle-1)/2),"===\n")
+        
+        while (len(tributes) > 0):
             randomInt = random.randint(1,10)
-            if 1 <= randomInt <= 4:
+            if 1 <= randomInt <= 2:
                 randomEvent(tributes)
+            elif 3 <= randomInt <= 4:
+                tributes = weaponKill(tributes)
             elif 5 <= randomInt <= 6:
-                tributes = kill(tributes)
-            elif randomInt == 7:
+                tributes = meleeKill(tributes)
+            elif randomInt == 7 and len(tributes) > 5:
                 tributes = suicide(tributes)
+            elif randomInt == 8:
+                weaponEquip(tributes)
+            
     
         for t in startingTributes:
             if t.alive == True:
@@ -57,10 +69,12 @@ def main():
                 
         if len(tributes) == 1:
             break
+        
+        cycle += 1
                 
     winner = tributes[0].name
     
-    print(f"Winner of the Hunger games is: {winner}")
+    print(f"\nWinner of the Hunger games is: {winner}")
     print("\nNumber of kills per player: \n")
     
     for i in range (0,len(startingTributes)):
