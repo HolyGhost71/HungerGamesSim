@@ -1,5 +1,51 @@
 import random
+            
+def suicide (tributes):
+    trib = random.choice(tributes)
+    tributes.remove(trib)
+    
+    print(f"{trib.name} kills {trib.themself}")
+    
+    trib.alive = False
+    
+    return tributes
 
+def randomEvent (tributes):
+    
+    trib = random.choice(tributes)
+    tributes.remove(trib)
+    
+    soloEvents = [f"{trib.name} collects fruit",
+              f"{trib.name} thinks of home",
+              f"{trib.name} cries",
+              f"{trib.name} finds for a place to sleep",
+              f"{trib.name} hunts and eats a rabbit",
+              f"{trib.name} locates a source of water",
+              f"{trib.name} looks for shelter",
+              f"{trib.name} starts a fire",
+              f"{trib.name} picks grass",
+              f"{trib.name} styles {trib.their} hair",
+              f"{trib.name} feels tired",
+            ]
+    
+    print(random.choice(soloEvents))
+    
+def cornucopiaEvent (tributes):
+    return tributes
+
+def weaponEquip (tributes):
+    
+    weaponList = ["Sword","Axe","Sickle","Hatchet","Knife","Bow","Mace", "Blowgun"]
+    
+    trib = random.choice (tributes)
+    tributes.remove(trib)
+    trib.weapon = random.choice(weaponList)
+    
+    if trib.weapon[0].upper() in ["A", "E", "I", "O", "U"]:
+        print (f"{trib.name} finds an {trib.weapon}")
+    else:
+        print (f"{trib.name} finds a {trib.weapon}")
+    
 def meleeKill(tributes):
     
     if len(tributes) < 2:
@@ -21,6 +67,8 @@ def meleeKill(tributes):
                    ]
     
     print(random.choice(modesOfKill))
+    
+    stealWeapon(trib1, trib2)
     
     trib1.playerKill()
     trib2.alive = False
@@ -48,59 +96,30 @@ def weaponKill (tributes):
     tributes.remove(trib2)
         
     if trib1.weapon in ["Sword", "Knife", "Sickle"]:
-        print (f"{trib1.name} stabs {trib2.name} using the {trib1.weapon}")
+        print (f"{trib1.name} stabs {trib2.name} using {trib1.their} {trib1.weapon}")
     elif trib1.weapon in ["Axe", "Hatchet"]:
         print (f"{trib1.name} swings {trib1.their} {trib1.weapon} into {trib2.name}'s chest")
     elif trib1.weapon in ["Mace"]:
         print (f"{trib1.name} crushes {trib2.name}'s skull with {trib1.their} {trib1.weapon}")
-    elif trib1.weapon in ["Bow"]:
-        print (f"{trib1.name} shoots {trib2.name} with a {trib1.weapon}")
+    elif trib1.weapon in ["Bow", "Blowgun"]:
+        print (f"{trib1.name} shoots {trib2.name} with {trib1.their} {trib1.weapon}")
+
+    weaponBreak(trib1)
+    stealWeapon(trib1, trib2)
 
     trib2.alive = False
     trib1.playerKill()
     
     return tributes
-            
-def suicide (tributes):
-    trib = random.choice(tributes)
-    tributes.remove(trib)
-    
-    print(f"{trib.name} kills {trib.themself}")
-    
-    trib.alive = False
-    
-    return tributes
 
-def randomEvent (tributes):
-    
-    trib = random.choice(tributes)
-    tributes.remove(trib)
-    
-    events = [f"{trib.name} collects fruit",
-              f"{trib.name} thinks of home",
-              f"{trib.name} cries",
-              f"{trib.name} finds for a place to sleep",
-              f"{trib.name} hunts and eats a rabbit",
-              f"{trib.name} locates a source of water",
-              f"{trib.name} looks for shelter",
-              f"{trib.name} starts a fire",
-              f"{trib.name} picks grass",
-              f"{trib.name} styles {trib.their} hair",
-              f"{trib.name} feels tired",
-            ]
-    
-    print(random.choice(events))
-    
-def weaponEquip (tributes):
-    
-    weaponList = ["Sword","Axe","Sickle","Hatchet","Knife","Bow","Mace"]
-    
-    trib = random.choice (tributes)
-    tributes.remove(trib)
-    trib.weapon = random.choice(weaponList)
-    
-    if trib.weapon in ["Sword","Sickle","Hatchet","Knife","Bow","Mace"]:
-        print (f"{trib.name} finds a {trib.weapon}")
-    if trib.weapon in ["Axe"]:
-        print (f"{trib.name} finds an {trib.weapon}")
+def weaponBreak(tribute):
+    randomInt = random.randint(1,5)
+    if randomInt == 1:
+        print(f"{tribute.name}'s {tribute.weapon} breaks")
+        tribute.weapon == None
+        
+def stealWeapon(aliveTribute, deadTribute):
+    if aliveTribute.weapon == None and deadTribute.weapon != None:
+        aliveTribute.weapon = deadTribute.weapon
+        deadTribute.weapon = None
     

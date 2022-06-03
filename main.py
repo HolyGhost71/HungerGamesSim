@@ -41,9 +41,6 @@ def main():
     #Only alive players are acted on
     tributes = startingTributes.copy()
     
-    for i in range (0,len(startingTributes)):
-        print(f"{startingTributes[i].name}: {startingTributes[i].they}")
-    
     cycle: int = 2
      
     # Game
