@@ -4,6 +4,7 @@ class Tribute:
         self.alive = True
         self.kills = 0
         self.weapon = None
+        self.deathDay = 0
         
         if gender == 'M':
             self.they = "he"
@@ -25,3 +26,7 @@ class Tribute:
         
     def playerKill(self):
         self.kills += 1
+        
+    def setDead(self, day):
+        self.alive = False
+        self.deathDay = day

@@ -1,3 +1,5 @@
+from decimal import ROUND_DOWN
+import math
 import random
 import time
 import numpy as np
@@ -46,29 +48,63 @@ def main():
     # Game
     while (True):
         
-        if (cycle % 2 == 0): print("\n=== Day:",int(cycle/2),"===\n")
+        if (cycle == 2): print("\n=== Cornucopia ===\n")
+        elif (cycle % 2 == 0): print("\n=== Day:",int(cycle/2),"===\n")
         else: print ("\n=== Night:", int((cycle-1)/2),"===\n")
         
+        dayNo = int(math.floor(cycle/2))
+        
         while (len(tributes) > 0):
-            randomInt = random.randint(1,10)
-            if 1 <= randomInt <= 2:
-                randomEvent(tributes)
-            elif 3 <= randomInt <= 4:
-                tributes = weaponKill(tributes)
-            elif 5 <= randomInt <= 6:
-                tributes = meleeKill(tributes)
-            elif randomInt == 7 and len(tributes) > 5:
-                tributes = suicide(tributes)
-            elif randomInt == 8:
-                weaponEquip(tributes)
+            if cycle == 2:
+                randomInt = random.randint(1,12)
+                if 1 <= randomInt <= 5:
+                    cornucopiaEvent(tributes)
+                elif randomInt == 6:
+                    tributes = meleeKill(tributes, dayNo)
+                elif 7 <= randomInt <= 10:
+                    weaponEquip(tributes, True)
+                else:
+                    tributes = weaponKill(tributes, dayNo)
+                
+            elif cycle % 2 == 0:
+                randomInt = random.randint(1,11)
+                if 1 <= randomInt <= 5:
+                    dayEvent(tributes)
+                elif 6 <= randomInt <= 8:
+                    tributes = weaponKill(tributes, dayNo)
+                elif randomInt == 9:
+                    tributes = meleeKill(tributes, dayNo)
+                elif randomInt == 10 and len(tributes) > 5:
+                    tributes = suicide(tributes, dayNo)
+                elif randomInt == 11:
+                    weaponEquip(tributes, False)
+                    
+            elif cycle % 2 == 1:
+                randomInt = random.randint(1,12)
+                if 1 <= randomInt <= 6:
+                    nightEvent(tributes)
+                elif 7 <= randomInt <= 9:
+                    tributes = weaponKill(tributes, dayNo)
+                elif randomInt == 10:
+                    tributes = meleeKill(tributes, dayNo)
+                elif randomInt == 11 and len(tributes) > 5:
+                    tributes = suicide(tributes, dayNo)
+                elif randomInt == 12:
+                    weaponEquip(tributes, False)
             
-    
         for t in startingTributes:
             if t.alive == True:
                 tributes.append(t)
-                
+                  
         if len(tributes) == 1:
             break
+        
+        if (cycle % 2 == 1):   
+            print("\nThe Fallen:")  
+        
+        for t in startingTributes:
+            if t.alive == False and t.deathDay == dayNo and cycle % 2 == 1:
+                print(t.name)
         
         cycle += 1
                 
@@ -77,8 +113,9 @@ def main():
     print(f"\nWinner of the Hunger games is: {winner}")
     print("\nNumber of kills per player: \n")
     
-    for i in range (0,len(startingTributes)):
-        print(f"{startingTributes[i].name}: {startingTributes[i].kills}")
+    for t in startingTributes:
+        if t.kills > 0:
+            print(f"{t.name}: {t.kills}")
     
 if __name__ == "__main__":
     main()
