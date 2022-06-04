@@ -68,7 +68,7 @@ def cornucopiaEvent (tributes):
               f"{trib.name} grabs a bottle of water",
               f"{trib.name} snatches food",
               f"{trib.name} falls over",
-              f"{trib.name} scouts around",
+              f"{trib.name} scouts ahead",
               f"{trib.name} watches the chaos",
             ]
     
@@ -144,9 +144,9 @@ def weaponKill (tributes, day):
     tributes.remove(trib2)
     
     bladeKills = [f"{trib1.name} stabs {trib2.name} using {trib1.their} {trib1.weapon}",
-                f"{trib1.name} stabs {trib2.name} in the eye using {trib1.their} {trib1.weapon}",
+                f"{trib1.name} cuts {trib2.name}'s eye out with {trib1.their} {trib1.weapon}",
                 f"{trib1.name} hacks away at {trib2.name}'s body with {trib1.their} {trib1.weapon}",
-                f"{trib1.name} decapitates {trib2.name} with the {trib1.weapon}"
+                f"{trib1.name} decapitates {trib2.name} with {trib1.their} {trib1.weapon}"
                 ]
 
     axeKills = [f"{trib1.name} swings {trib1.their} {trib1.weapon} into {trib2.name}'s chest",
