@@ -18,7 +18,7 @@ class Tribute:
             self.their = "her"
             self.themself = "herself"
             
-        if gender == 'T':
+        else:
             self.they = "they"
             self.them = "them"
             self.their = "their"

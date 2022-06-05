@@ -6,28 +6,11 @@ from events import *
 
 def createTributeArray():
     objArray = []
-    while (True):
-        
-        inputMode = input("(T)ext file or (M)anual: ")
-        
-        if (inputMode.lower().strip() == "t"):
-            file = open("players.txt","r")
-            text = file.read()
-            tributeNameArray = text.split(", ")
-            break
+    file = open("players.txt","r")
+    text = file.read()
+    tributeNameArray = text.split(", ")
+    file.close()
 
-        if (inputMode.lower().strip() == "m"):
-            tributeNameArray = []
-            while (True):
-                newTribute = ""
-                newTribute = input("Tribute name, type EXIT when you are done: ")
-                if (newTribute.lower().strip() == "exit"):
-                    break
-                tributeNameArray.append(newTribute.lower().strip().capitalize())
-            break
-        
-        else: print("Invalid input")
-        
     i = 0
     while i < len(tributeNameArray):
         objArray.append(Tribute(tributeNameArray[i], tributeNameArray[i+1]))
@@ -53,6 +36,8 @@ def main():
         dayNo = int(math.floor(cycle/2))
         
         while (len(tributes) > 0):
+            
+            # Cornucopia
             if cycle == 2:
                 randomInt = random.randint(1,12)
                 if 1 <= randomInt <= 5:
@@ -63,7 +48,28 @@ def main():
                     weaponEquip(tributes, True)
                 else:
                     tributes = weaponKill(tributes, dayNo)
-                
+                    
+            # Day Endgame
+            elif cycle % 2 == 0 and len(tributes) < len(startingTributes)/4:
+                randomInt = random.randint(1,6)
+                if 1 <= randomInt <= 3:
+                    dayEvent(tributes)
+                elif 4 <= randomInt <= 5:
+                    tributes = weaponKill(tributes, dayNo)
+                elif randomInt == 6:
+                    tributes = meleeKill(tributes, dayNo)
+                    
+            # Night Endgame
+            elif cycle % 2 == 0 and len(tributes) < len(startingTributes)/4:
+                randomInt = random.randint(1,6)
+                if 1 <= randomInt <= 4:
+                    nightEvent(tributes)
+                elif 5 <= randomInt <= 6:
+                    tributes = weaponKill(tributes, dayNo)
+                elif randomInt == 7:
+                    tributes = meleeKill(tributes, dayNo)
+                    
+            # Day  
             elif cycle % 2 == 0:
                 randomInt = random.randint(1,11)
                 if 1 <= randomInt <= 5:
@@ -72,11 +78,12 @@ def main():
                     tributes = weaponKill(tributes, dayNo)
                 elif randomInt == 9:
                     tributes = meleeKill(tributes, dayNo)
-                elif randomInt == 10 and len(tributes) > 5:
+                elif randomInt == 10:
                     tributes = suicide(tributes, dayNo)
                 elif randomInt == 11:
                     weaponEquip(tributes, False)
                     
+            # Night        
             elif cycle % 2 == 1:
                 randomInt = random.randint(1,12)
                 if 1 <= randomInt <= 6:
@@ -85,7 +92,7 @@ def main():
                     tributes = weaponKill(tributes, dayNo)
                 elif randomInt == 10:
                     tributes = meleeKill(tributes, dayNo)
-                elif randomInt == 11 and len(tributes) > 5:
+                elif randomInt == 11:
                     tributes = suicide(tributes, dayNo)
                 elif randomInt == 12:
                     weaponEquip(tributes, False)
@@ -96,10 +103,10 @@ def main():
                   
         if len(tributes) == 1:
             break
-        
-        if (cycle % 2 == 1):   
-            print("\nThe Fallen:")  
-        
+  
+        if cycle % 2 == 1:
+            print("\nThe Fallen: ")
+  
         for t in startingTributes:
             if t.alive == False and t.deathDay == dayNo and cycle % 2 == 1:
                 print(t.name)

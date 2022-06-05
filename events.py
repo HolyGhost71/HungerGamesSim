@@ -52,7 +52,8 @@ def nightEvent (tributes):
               f"{trib.name} is woken up by the sounds of other tributes",
               f"{trib.name} hopes for a sponsorship",
               f"{trib.name} plans {trib.their} next attack",
-              f"{trib.name} hides in the shadows",
+              f"{trib.name} receives food from a sponsor",
+              f"{trib.name} hides in the shadows"
             ]
     
     print(random.choice(events))
