@@ -12,7 +12,7 @@ class Tribute:
             self.their = "his"
             self.themself = "himself"
             
-        if gender == 'F':
+        elif gender == 'F':
             self.they = "she"
             self.them = "her"
             self.their = "her"
