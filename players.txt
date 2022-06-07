@@ -1,1 +1,1 @@
-James, M, Noah, M, Spring, M, Ice, T, Slushie, F, Zo, F, Kalerteth, T, Lucie, F, Doc, M, Alex, M, HolyGhost2_, M, Batnerd, M, Boofus, T, M4rvin, M, Sandra K Lovelace, F, Arnav, M, John, M
+Player1, M, Player2, F, Player3, T (delete and edit this to fit your own game)

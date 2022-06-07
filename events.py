@@ -23,7 +23,7 @@ def dayEvent (tributes, aliveTributes):
 
     randomInt = random.randint(1,35)
     
-    if 29 < randomInt <= 35 and len(aliveTributes) >= 6:
+    if 29 < randomInt <= 35 and len(aliveTributes) > 6:
         if len(tributes) < 3: randomInt = random.randint(1,29)
         else:
             trib1 = random.choice(tributes)
@@ -41,7 +41,7 @@ def dayEvent (tributes, aliveTributes):
             print(random.choice(trioEvents))
             return tributes
             
-    if 17 < randomInt <= 29 and len(aliveTributes) >= 4:
+    if 17 < randomInt <= 29 and len(aliveTributes) > 4:
         if len(tributes) < 2: randomInt = random.randint(1,17)
         else:
             trib1 = random.choice(tributes)
@@ -91,7 +91,7 @@ def nightEvent (tributes, aliveTributes):
     
     randomInt = random.randint(1,29)
     
-    if 23 < randomInt <= 29 and len(aliveTributes) >= 6:
+    if 23 < randomInt <= 29 and len(aliveTributes) > 6:
         if len(tributes) < 3: randomInt = random.randint(1,23)
         else:
             trib1 = random.choice(tributes)
@@ -109,7 +109,7 @@ def nightEvent (tributes, aliveTributes):
             print(random.choice(trioEvents))
             return tributes
             
-    if 14 < randomInt <= 23 and len(aliveTributes) >= 4:
+    if 14 < randomInt <= 23 and len(aliveTributes) > 4:
         if len(tributes) < 2: randomInt = random.randint(1,14)
         else:
             trib1 = random.choice(tributes)
