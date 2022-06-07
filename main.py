@@ -29,6 +29,8 @@ def main():
     # Game
     while (True):
         
+        aliveTributes = tributes.copy()
+        
         if (cycle == 2): print("\n=== Cornucopia ===\n")
         elif (cycle % 2 == 0): print("\n=== Day:",int(cycle/2),"===\n")
         else: print ("\n=== Night:", int((cycle-1)/2),"===\n")
@@ -53,17 +55,17 @@ def main():
             elif cycle % 2 == 0 and len(tributes) < len(startingTributes)/4:
                 randomInt = random.randint(1,6)
                 if 1 <= randomInt <= 3:
-                    dayEvent(tributes)
+                    dayEvent(tributes, aliveTributes)
                 elif 4 <= randomInt <= 5:
                     tributes = weaponKill(tributes, dayNo)
                 elif randomInt == 6:
                     tributes = meleeKill(tributes, dayNo)
                     
             # Night Endgame
-            elif cycle % 2 == 0 and len(tributes) < len(startingTributes)/4:
+            elif cycle % 2 == 1 and len(tributes) < len(startingTributes)/4:
                 randomInt = random.randint(1,6)
                 if 1 <= randomInt <= 4:
-                    nightEvent(tributes)
+                    nightEvent(tributes, aliveTributes)
                 elif 5 <= randomInt <= 6:
                     tributes = weaponKill(tributes, dayNo)
                 elif randomInt == 7:
@@ -73,7 +75,7 @@ def main():
             elif cycle % 2 == 0:
                 randomInt = random.randint(1,11)
                 if 1 <= randomInt <= 5:
-                    dayEvent(tributes)
+                    dayEvent(tributes, aliveTributes)
                 elif 6 <= randomInt <= 8:
                     tributes = weaponKill(tributes, dayNo)
                 elif randomInt == 9:
@@ -87,7 +89,7 @@ def main():
             elif cycle % 2 == 1:
                 randomInt = random.randint(1,12)
                 if 1 <= randomInt <= 6:
-                    nightEvent(tributes)
+                    nightEvent(tributes, aliveTributes)
                 elif 7 <= randomInt <= 9:
                     tributes = weaponKill(tributes, dayNo)
                 elif randomInt == 10:
