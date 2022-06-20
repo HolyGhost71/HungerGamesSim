@@ -1,6 +1,5 @@
 import math
 import random
-import numpy as np
 from Tribute import Tribute
 from events import *
 

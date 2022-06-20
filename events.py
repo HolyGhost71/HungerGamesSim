@@ -1,6 +1,5 @@
 import random
 
-from numpy import tri
             
 def suicide (tributes, day):
     trib = random.choice(tributes)

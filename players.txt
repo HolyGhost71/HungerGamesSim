@@ -1,1 +1,1 @@
-Player1, M, Player2, F, Player3, T (delete and edit this to fit your own game)
+P1, M, P2, F, P3, T
