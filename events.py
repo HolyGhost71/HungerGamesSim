@@ -32,7 +32,7 @@ def dayEvent (tributes, day):
 
     randomInt = random.randint(1,35)
     
-    if 29 < randomInt <= 35:
+    if 29 < randomInt <= 35 and len(tributes) > 6:
         if len(tributes) < 3: randomInt = random.randint(1,29)
         else:
             trib1 = random.choice(tributes)
