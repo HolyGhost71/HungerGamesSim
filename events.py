@@ -105,7 +105,7 @@ def dayEvent (tributes, day):
               f"{trib1.name} watches the horizon",
               f"{trib1.name} sharpens a stick into a makeshift weapon",
               f"{trib1.name} drinks from a small stream",
-              f"{trib1.name} wanders if it would be good to have allies",
+              f"{trib1.name} wonders if it would be good to have allies",
               f"{trib1.name} tries to camouflage {trib1.themself}",
               f"{trib1.name} looks for a way out of the arena",
               f"{trib1.name} appeals to the sponsors",
