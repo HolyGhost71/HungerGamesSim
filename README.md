@@ -1,5 +1,3 @@
-Hunger Games Simulator - similar to the web version but hopefully including more features using classes
-
 ## Description
 Simulates the movie/book series The Hunger Games in a text-based format, but with a twist. Instead of generic teenagers include your own friends, family or favourite celebrities. Simply add your tributes to the text file and have a new entertaining scenario every time.
 
