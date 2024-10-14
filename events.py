@@ -28,11 +28,11 @@ def suicide (tributes, day):
     
     return tributes
 
-def dayEvent (tributes, aliveTributes):
+def dayEvent (tributes, day):
 
     randomInt = random.randint(1,35)
     
-    if 29 < randomInt <= 35 and len(aliveTributes) > 6:
+    if 29 < randomInt <= 35:
         if len(tributes) < 3: randomInt = random.randint(1,29)
         else:
             trib1 = random.choice(tributes)
@@ -55,7 +55,7 @@ def dayEvent (tributes, aliveTributes):
             print(random.choice(trioEvents))
             return tributes
             
-    if 17 < randomInt <= 29 and len(aliveTributes) > 4:
+    if 17 < randomInt <= 29 and len(tributes) > 4:
         if len(tributes) < 2: randomInt = random.randint(1,17)
         else:
             trib1 = random.choice(tributes)
@@ -115,11 +115,11 @@ def dayEvent (tributes, aliveTributes):
         print(random.choice(soloEvents))
         return tributes
     
-def nightEvent (tributes, aliveTributes):
+def nightEvent (tributes, day):
     
     randomInt = random.randint(1,29)
     
-    if 23 < randomInt <= 29 and len(aliveTributes) > 6:
+    if 23 < randomInt <= 29 and len(tributes) > 6:
         if len(tributes) < 3: randomInt = random.randint(1,23)
         else:
             trib1 = random.choice(tributes)
@@ -143,7 +143,7 @@ def nightEvent (tributes, aliveTributes):
             print(random.choice(trioEvents))
             return tributes
             
-    if 14 < randomInt <= 23 and len(aliveTributes) > 4:
+    if 14 < randomInt <= 23 and len(tributes) > 4:
         if len(tributes) < 2: randomInt = random.randint(1,14)
         else:
             trib1 = random.choice(tributes)
@@ -193,7 +193,7 @@ def nightEvent (tributes, aliveTributes):
         print(random.choice(soloEvents))
         return tributes
     
-def cornucopiaEvent (tributes):
+def cornucopiaEvent (tributes, day):
     trib = random.choice(tributes)
     tributes.remove(trib)
     
@@ -217,7 +217,7 @@ def cornucopiaEvent (tributes):
     
     print(random.choice(events))
  
-def weaponEquip (tributes, cornucopia):
+def weaponEquip (tributes, day):
     
     weaponList = ["Sword","Axe","Sickle","Hatchet","Knife","Bow","Mace", "Blowgun", "Spear", "Trident", "Baton", "Machete"]
     
@@ -226,13 +226,13 @@ def weaponEquip (tributes, cornucopia):
     if trib.weapon == None:
         trib.weapon = random.choice(weaponList)
         
-        if (cornucopia):
+        if (day == 1):
             if trib.weapon[0].upper() in ["A", "E", "I", "O", "U"]:
                 print (f"{trib.name} finds an {trib.weapon}")
             else:
                 print (f"{trib.name} finds a {trib.weapon}")
                 
-        if not cornucopia:
+        else:
             if trib.weapon[0].upper() in ["A", "E", "I", "O", "U"]:
                 print (f"{trib.name} recieves an {trib.weapon} from a sponsor")
             else:
@@ -259,8 +259,7 @@ def meleeKill(tributes, day):
                    f"{trib1.name} ambushes {trib2.name} and kills {trib2.them}",
                    f"{trib1.name} bites {trib2.name}'s throat open",
                    f"{trib2.name} is thrown off a cliff by {trib1.name}, dying on impact",
-                   f"{trib1.name} wins a fight against {trib2.name}",
-                   f"{trib1.name} punches {trib2.name} until {trib2.they} die"
+                   f"{trib1.name} wins a fight against {trib2.name}"
                    ]
     
     print(random.choice(modesOfKill))
@@ -324,7 +323,7 @@ def weaponKill (tributes, day):
                 f"{trib1.name} shoots {trib2.name}'s eye out with the {trib1.weapon}",
                 f"{trib1.name} fires an arrow straight through {trib2.name}'s heart from a distance",
                 f"{trib1.name} hits {trib2.name} in the eye with a deadly accurate shot",
-                f"{trib2.name} is shot through the back of the head by {trib1.name} before {trib2.they} can process it."
+                f"{trib2.name} is shot through the back of the head by {trib1.name} before {trib2.they} can process it",
                 f"{trib1.name} fires a poison tipped projectile from {trib1.their} {trib1.weapon} at {trib2.name}"
 
                 ]
@@ -360,7 +359,7 @@ def weaponKill (tributes, day):
     
     return tributes
 
-def weaponBreak(tribute,tributesList):
+def weaponBreak(tribute, day):
     randomInt = random.randint(1,5)
     if randomInt == 1:
         print(f"{tribute.name}'s {tribute.weapon} breaks")
