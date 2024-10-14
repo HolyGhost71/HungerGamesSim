@@ -1,4 +1,4 @@
-# Hunger Games Sim
+Hunger Games Simulator - similar to the web version but hopefully including more features using classes
 
 ## Description
 Simulates the movie/book series The Hunger Games in a text-based format, but with a twist. Instead of generic teenagers include your own friends, family or favourite celebrities. Simply add your tributes to the text file and have a new entertaining scenario every time.
@@ -14,6 +14,7 @@ Currently Present:
 - Kills are tracked for each player and displayed at the end
 - Day/night cycle
 - Tributes can receive sponsorships
+- Variable probabilites that can be edited by the user
 
 To be added:
 - Arena events
@@ -25,3 +26,6 @@ To use, add names and genders to the players.txt file in the format:
 
 John, M, Jane, F, James, M, Joe, T etc.
 
+Support for male, female and non binary pronouns
+
+Can edit the event_pools.py file to change the probabilities of different events happening throughout the game. They must total to 1.
